@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { useDispatch } from "react-redux";
-import { insertPostAction } from "../redux/postDucks";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  insertPostAction,
+  changeFormNameAction,
+  changeFormDescriptionAction,
+} from "../redux/postDucks";
 
 const Form = () => {
   const dispatch = useDispatch();
-  const [newPost, setNewPost] = useState({
-    name: "",
-    description: "",
-  });
+
+  const newPost = useSelector((state) => state.post.newPost);
 
   const createNewPost = (e) => {
     //validación simple
@@ -16,17 +18,13 @@ const Form = () => {
       alert("Nombre y Descripción son obligatorios para un nuevo Post");
       return;
     }
+
     dispatch(insertPostAction(newPost));
-    //limpiamos formulario
-    setNewPost({
-      name: "",
-      description: "",
-    });
   };
 
-  const handlerName = (e) => setNewPost({ ...newPost, name: e.target.value });
+  const handlerName = (e) => dispatch(changeFormNameAction(e.target.value));
   const handlerDescription = (e) =>
-    setNewPost({ ...newPost, description: e.target.value });
+    dispatch(changeFormDescriptionAction(e.target.value));
 
   return (
     <div className="mt-4">

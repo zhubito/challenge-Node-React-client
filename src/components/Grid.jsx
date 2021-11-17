@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getPostAction, deletePostAction } from "../redux/postDucks";
+import { getPostAction } from "../redux/postDucks";
 import Post from "./Post";
 
 const HeadGrid = () => {
@@ -22,11 +22,7 @@ const Grid = () => {
   }, [dispatch]);
 
   const posts = useSelector((store) => store.post.array);
-  const filterForName = useSelector((store) => store.post.filter);
-
-  const deletePost = (id) => {
-    dispatch(deletePostAction(id));
-  };
+  const filter = useSelector((store) => store.post.filter);
 
   return (
     <div className="container mt-4 border border-dark">
@@ -34,10 +30,10 @@ const Grid = () => {
       {posts
         .sort((a, b) => b.id - a.id)
         .filter((post) =>
-          post.name.toLowerCase().includes(filterForName.toLowerCase())
+          post.name.toLowerCase().includes(filter.toLowerCase())
         )
         .map((post) => (
-          <Post post={post} deletePost={deletePost} key={post.id} />
+          <Post post={post} key={post.id} />
         ))}
     </div>
   );

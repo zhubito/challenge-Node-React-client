@@ -1,7 +1,15 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { deletePostAction } from "../redux/postDucks";
 
 const Post = (props) => {
-  const { post, deletePost } = props;
+  const { post } = props;
+
+  const dispatch = useDispatch();
+
+  const deletePost = (id) => {
+    dispatch(deletePostAction(id));
+  };
 
   return (
     <div className="row border-bottom">

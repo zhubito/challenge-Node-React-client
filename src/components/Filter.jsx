@@ -12,7 +12,7 @@ const Filter = () => {
     dispatch(changeFilterAction(inputFilter));
   };
 
-  const handleChange = (event) => setInputFilter(event.target.value);
+  const handleChangeFilter = (event) => setInputFilter(event.target.value);
 
   return (
     <div className="row">
@@ -22,7 +22,7 @@ const Filter = () => {
           name="filterForName"
           value={inputFilter}
           placeholder="Filtrar por Nombre"
-          onChange={handleChange}
+          onChange={handleChangeFilter}
           className="w-50"
         />
       </div>

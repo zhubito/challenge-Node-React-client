@@ -4,6 +4,7 @@ import generateStore from "./redux/store";
 import Filter from "./components/Filter";
 import Form from "./components/Form";
 import Grid from "./components/Grid";
+import Error from "./components/Error";
 
 function App() {
   const store = generateStore();
@@ -14,6 +15,7 @@ function App() {
         <Filter />
         <Grid />
         <Form />
+        <Error />
       </div>
     </Provider>
   );
