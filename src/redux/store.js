@@ -8,7 +8,5 @@ const rootReducer = combineReducers({
     post: postReducer
 });
 
-export default function generateStore() {
-    const store = createStore( rootReducer, composeWithDevTools( applyMiddleware(thunk) ) );
-    return store;
-}
+const generateStore = () => createStore( rootReducer, composeWithDevTools( applyMiddleware(thunk) ) );
+export default generateStore;
